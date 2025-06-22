@@ -1,0 +1,516 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 3.9%;
+    --primary: 0 0% 9%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 0 0% 96.1%;
+    --secondary-foreground: 0 0% 9%;
+    --muted: 0 0% 96.1%;
+    --muted-foreground: 0 0% 45.1%;
+    --accent: 0 0% 96.1%;
+    --accent-foreground: 0 0% 9%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 89.8%;
+    --input: 0 0% 89.8%;
+    --ring: 0 0% 3.9%;
+    --radius: 0.5rem;
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+  }
+
+  .dark {
+    --background: 0 0% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 0 0% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 0 0% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 9%;
+    --secondary: 0 0% 14.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 14.9%;
+    --muted-foreground: 0 0% 63.9%;
+    --accent: 0 0% 14.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 14.9%;
+    --input: 0 0% 14.9%;
+    --ring: 0 0% 83.1%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Custom gradient background - Business style */
+.gradient-bg {
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 50%, #cbd5e1 100%);
+}
+
+.dark .gradient-bg {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+}
+
+/* Enhanced card hover effects */
+.card-hover {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  @apply hover:shadow-xl hover:shadow-slate-200/20 hover:-translate-y-1;
+}
+
+.dark .card-hover {
+  @apply hover:shadow-xl hover:shadow-slate-900/30;
+}
+
+/* Business glassmorphism effect */
+.glass {
+  backdrop-filter: blur(8px);
+  background: rgba(248, 250, 252, 0.8);
+  border: 1px solid rgba(226, 232, 240, 0.3);
+}
+
+.dark .glass {
+  background: rgba(15, 23, 42, 0.8);
+  border: 1px solid rgba(51, 65, 85, 0.3);
+}
+
+/* Card animation improvements */
+.card-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.card-shimmer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  transition: left 0.6s ease;
+}
+
+.card-shimmer:hover::before {
+  left: 100%;
+}
+
+.dark .card-shimmer::before {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.05),
+    transparent
+  );
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Line clamp utilities */
+.line-clamp-1 {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* 水彩画风格动画效果 */
+@keyframes watercolor-fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+    filter: blur(10px);
+  }
+  50% {
+    opacity: 0.7;
+    transform: translateY(15px) scale(0.98);
+    filter: blur(5px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes scale-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.8) translateY(20px);
+  }
+  60% {
+    opacity: 0.8;
+    transform: scale(1.05) translateY(-5px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes gentle-float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-5px) rotate(0.5deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(0deg);
+  }
+  75% {
+    transform: translateY(-5px) rotate(-0.5deg);
+  }
+}
+
+@keyframes soft-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(139, 92, 246, 0.2);
+  }
+}
+
+@keyframes color-shift {
+  0% {
+    filter: hue-rotate(0deg);
+  }
+  50% {
+    filter: hue-rotate(30deg);
+  }
+  100% {
+    filter: hue-rotate(0deg);
+  }
+}
+
+/* 应用动画类 */
+.animate-watercolor-fade-in {
+  animation: watercolor-fade-in 0.8s ease-out forwards;
+}
+
+.animate-scale-in {
+  animation: scale-in 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.animate-gentle-float {
+  animation: gentle-float 6s ease-in-out infinite;
+}
+
+.animate-soft-glow {
+  animation: soft-glow 4s ease-in-out infinite;
+}
+
+.animate-color-shift {
+  animation: color-shift 8s ease-in-out infinite;
+}
+
+/* 悬停时的磁性吸附效果 */
+.magnetic-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.magnetic-hover:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* 水彩画渐变背景 */
+.watercolor-bg {
+  background: linear-gradient(45deg, 
+    rgba(59, 130, 246, 0.05) 0%, 
+    rgba(139, 92, 246, 0.05) 25%, 
+    rgba(236, 72, 153, 0.05) 50%, 
+    rgba(34, 197, 94, 0.05) 75%, 
+    rgba(251, 146, 60, 0.05) 100%);
+  background-size: 400% 400%;
+  animation: watercolor-gradient 15s ease infinite;
+}
+
+@keyframes watercolor-gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* 页面加载时的水彩扩散效果 */
+@keyframes watercolor-expand {
+  0% {
+    transform: scale(0) rotate(0deg);
+    opacity: 0;
+    border-radius: 50%;
+  }
+  50% {
+    transform: scale(1.2) rotate(180deg);
+    opacity: 0.8;
+    border-radius: 30%;
+  }
+  100% {
+    transform: scale(1) rotate(360deg);
+    opacity: 1;
+    border-radius: 1rem;
+  }
+}
+
+.animate-watercolor-expand {
+  animation: watercolor-expand 1s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+}
+
+/* 文字渐变动画 */
+@keyframes text-shimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+.text-shimmer {
+  background: linear-gradient(
+    90deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.5) 50%,
+    transparent 70%
+  );
+  background-size: 200% auto;
+  background-clip: text;
+  animation: text-shimmer 3s linear infinite;
+}
+
+/* 列表视图滑入动画 */
+@keyframes slide-in {
+  0% {
+    opacity: 0;
+    transform: translateX(-30px) scale(0.95);
+  }
+  50% {
+    opacity: 0.7;
+    transform: translateX(5px) scale(1.02);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+.animate-slide-in {
+  animation: slide-in 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* 响应式优化 */
+@media (prefers-reduced-motion: reduce) {
+  .animate-watercolor-fade-in,
+  .animate-scale-in,
+  .animate-gentle-float,
+  .animate-soft-glow,
+  .animate-color-shift,
+  .animate-watercolor-expand,
+  .animate-slide-in {
+    animation: none;
+  }
+  
+  .magnetic-hover:hover {
+    transform: none;
+  }
+}
+
+/* Tooltip 自定义样式 */
+[data-radix-popper-content-wrapper] {
+  z-index: 50 !important;
+}
+
+/* 强制 tooltip 显示在最上层 */
+.tooltip-content {
+  z-index: 999 !important;
+  position: fixed !important;
+}
+
+/* 确保 tooltip 不被其他元素遮挡 */
+[role="tooltip"] {
+  z-index: 150 !important;
+  pointer-events: none;
+  position: relative;
+  max-width: 300px !important;
+  white-space: normal !important;
+  word-wrap: break-word !important;
+  line-height: 1.5 !important;
+  padding: 8px !important;
+}
+
+/* Header 区域的 tooltip 特殊处理 */
+header [role="tooltip"] {
+  z-index: 200 !important;
+}
+
+/* 为tooltip添加小箭头指针 */
+[data-side="top"] {
+  margin-bottom: 8px;
+}
+
+.festival-day {
+  position: relative;
+}
+
+.festival-day::after {
+  content: '';
+  position: absolute;
+  bottom: 2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: linear-gradient(to right, #ef4444, #ec4899);
+}
+
+/* Calendar styles */
+.rdp {
+  --rdp-cell-size: 40px;
+  --rdp-accent-color: hsl(var(--primary));
+  --rdp-background-color: hsl(var(--accent));
+  margin: 0;
+}
+
+.rdp-months {
+  @apply space-y-4;
+}
+
+.rdp-month {
+  @apply space-y-4;
+}
+
+.rdp-table {
+  @apply w-full border-collapse space-y-1;
+}
+
+.rdp-head_row {
+  @apply flex w-full;
+}
+
+.rdp-head_cell {
+  @apply text-muted-foreground w-9 font-normal text-[0.8rem] flex items-center justify-center;
+}
+
+.rdp-row {
+  @apply flex w-full mt-2;
+}
+
+.rdp-cell {
+  @apply relative flex items-center justify-center p-0 text-center text-sm focus-within:relative focus-within:z-20 w-9 h-9;
+}
+
+.rdp-day {
+  @apply h-9 w-9 p-0 font-normal flex items-center justify-center hover:bg-white/80 dark:hover:bg-gray-800/80 focus:bg-white/80 dark:focus:bg-gray-800/80 backdrop-blur-sm rounded-xl border border-transparent hover:border-white/20 dark:hover:border-gray-600/30 transition-all duration-300;
+}
+
+.rdp-day_selected {
+  @apply bg-gradient-to-r from-blue-500 to-purple-500 text-white hover:from-blue-600 hover:to-purple-600 hover:text-white focus:bg-blue-500 focus:text-white dark:bg-blue-500 dark:text-white dark:hover:bg-blue-600 dark:hover:text-white dark:focus:bg-blue-600 dark:focus:text-white;
+}
+
+.rdp-day_today {
+  @apply bg-gradient-to-r from-slate-100 to-slate-200 text-slate-900 dark:from-slate-800 dark:to-slate-700 dark:text-slate-50;
+}
+
+.rdp-day_outside {
+  @apply text-slate-500 opacity-50 dark:text-slate-400;
+}
+
+.rdp-day_disabled {
+  @apply text-slate-500 opacity-50 dark:text-slate-400;
+}
+
+.rdp-nav {
+  @apply space-x-1 flex items-center;
+}
+
+.rdp-nav_button {
+  @apply h-7 w-7 bg-transparent p-0 opacity-50 hover:opacity-100 hover:bg-white/80 dark:hover:bg-gray-800/80 backdrop-blur-sm rounded-xl border border-white/20 dark:border-gray-600/30 transition-all duration-300;
+}
+
+.rdp-nav_button_previous {
+  @apply absolute left-1;
+}
+
+.rdp-nav_button_next {
+  @apply absolute right-1;
+}
+
+.rdp-caption {
+  @apply flex justify-center pt-1 relative items-center;
+}
+
+.rdp-caption_label {
+  @apply text-sm font-medium;
+} 
